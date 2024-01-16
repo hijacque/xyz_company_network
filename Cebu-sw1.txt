@@ -44,22 +44,40 @@ interface GigabitEthernet1/0/1
  speed auto
 !
 interface GigabitEthernet1/0/2
+ switchport trunk allowed vlan 1,10-13,20-24
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/3
+ switchport trunk allowed vlan 1,10-13,20-24
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/4
+ switchport trunk allowed vlan 1,10-13,20-24
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/5
+ switchport trunk allowed vlan 1,10-13,20-24
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/6
+ switchport trunk allowed vlan 1,10-13,20-24
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/7
+ switchport trunk allowed vlan 1,10-13,20-24
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/8
+ switchport trunk allowed vlan 1,10-13,20-24
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/9
+ switchport trunk allowed vlan 1,10-13,20-24
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/10
+ switchport trunk allowed vlan 1,10-13,20-24
+ switchport mode trunk
 !
 interface GigabitEthernet1/0/11
 !
@@ -100,6 +118,87 @@ interface GigabitEthernet1/1/4
 interface Vlan1
  no ip address
  shutdown
+!
+interface Vlan10
+ mac-address 0006.2a37.2e01
+ ip address 192.168.32.2 255.255.255.0
+ ip helper-address 172.17.0.68
+ standby 1 ip 192.168.32.1
+ standby 1 priority 105
+ standby 1 preempt
+!
+interface Vlan11
+ mac-address 0006.2a37.2e02
+ ip address 192.168.33.2 255.255.255.128
+ ip helper-address 172.17.0.68
+ standby 1 ip 192.168.33.1
+ standby 1 priority 105
+ standby 1 preempt
+!
+interface Vlan12
+ mac-address 0006.2a37.2e03
+ ip address 192.168.33.130 255.255.255.224
+ ip helper-address 172.17.0.68
+ standby 1 ip 192.168.33.129
+ standby 1 priority 105
+ standby 1 preempt
+!
+interface Vlan13
+ mac-address 0006.2a37.2e04
+ ip address 192.168.33.162 255.255.255.224
+ ip helper-address 172.17.0.68
+ standby 1 ip 192.168.33.161
+ standby 1 priority 105
+ standby 1 preempt
+!
+interface Vlan20
+ mac-address 0006.2a37.2e05
+ ip address 172.17.0.66 255.255.255.248
+ standby 1 ip 172.17.0.65
+ standby 1 priority 105
+ standby 1 preempt
+!
+interface Vlan21
+ mac-address 0006.2a37.2e06
+ ip address 172.17.0.74 255.255.255.248
+ standby 1 ip 172.17.0.73
+ standby 1 priority 105
+ standby 1 preempt
+!
+interface Vlan22
+ mac-address 0006.2a37.2e07
+ ip address 172.17.0.82 255.255.255.248
+ standby 1 ip 172.17.0.81
+ standby 1 priority 105
+ standby 1 preempt
+!
+interface Vlan23
+ mac-address 0006.2a37.2e08
+ ip address 172.17.0.90 255.255.255.248
+ standby 1 ip 172.17.0.89
+ standby 1 priority 105
+ standby 1 preempt
+!
+interface Vlan24
+ mac-address 0006.2a37.2e09
+ ip address 172.17.0.98 255.255.255.224
+ ip helper-address 172.17.0.68
+ standby 1 ip 172.17.0.97
+ standby 1 priority 105
+ standby 1 preempt
+!
+router ospf 1
+ log-adjacency-changes
+ network 192.168.32.0 0.0.0.255 area 0
+ network 192.168.33.0 0.0.0.127 area 0
+ network 192.168.33.128 0.0.0.31 area 0
+ network 192.168.33.160 0.0.0.31 area 0
+ network 172.17.0.64 0.0.0.7 area 0
+ network 172.17.0.72 0.0.0.7 area 0
+ network 172.17.0.80 0.0.0.7 area 0
+ network 172.17.0.88 0.0.0.7 area 0
+ network 172.17.0.96 0.0.0.31 area 0
+ network 192.168.63.0 0.0.0.3 area 0
 !
 ip classless
 !
