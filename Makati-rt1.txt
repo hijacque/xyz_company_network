@@ -67,6 +67,11 @@ interface Vlan1
  no ip address
  shutdown
 !
+router ospf 1
+ log-adjacency-changes
+ network 192.168.95.0 0.0.0.3 area 0
+ network 17.18.16.16 0.0.0.3 area 0
+!
 ip classless
 !
 ip flow-export version 9
