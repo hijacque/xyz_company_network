@@ -18,13 +18,28 @@ no ipv6 cef
 !
 !
 !
-!
 license udi pid CISCO2911/K9 sn FTX15248I4T-
+license boot module c2900 technology-package securityk9
 !
 !
 !
+crypto isakmp policy 10
+ encr aes 256
+ authentication pre-share
+ group 5
+!
+crypto isakmp key vpnkey address 17.18.16.1
 !
 !
+!
+crypto ipsec transform-set Cebu1-Manila1 esp-aes 256 esp-sha-hmac
+!
+crypto map IPSEC-MAP 10 ipsec-isakmp 
+ set peer 17.18.16.1
+ set pfs group5
+ set security-association lifetime seconds 86400
+ set transform-set Cebu1-Manila1 
+ match address 100
 !
 !
 !
@@ -73,10 +88,13 @@ router ospf 1
  network 17.18.16.8 0.0.0.3 area 0
 !
 ip classless
+ip route 0.0.0.0 0.0.0.0 17.18.16.10 
 !
 ip flow-export version 9
 !
 !
+access-list 100 permit ip 192.168.32.0 0.0.0.255 192.168.0.0 0.0.1.255
+access-list 100 permit ip 192.168.33.0 0.0.0.127 192.168.0.0 0.0.1.255
 !
 !
 !

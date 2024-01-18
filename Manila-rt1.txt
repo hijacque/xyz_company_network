@@ -18,13 +18,37 @@ no ipv6 cef
 !
 !
 !
+username manila-tech privilege 15 secret 5 $1$mERr$i1UL9tGvXUzG3K.j2AeQ.0
+!
 !
 license udi pid CISCO2911/K9 sn FTX1524BX4F-
+license boot module c2900 technology-package securityk9
+!
+!
+!
+crypto isakmp policy 10
+ encr aes 256
+ authentication pre-share
+ group 5
+!
+crypto isakmp key vpnkey address 17.18.16.9
+!
+!
+!
+crypto ipsec transform-set Manila1-Cebu1 esp-aes 256 esp-sha-hmac
+!
+crypto map IPSEC-MAP 10 ipsec-isakmp 
+ set peer 17.18.16.9
+ set pfs group5
+ set security-association lifetime seconds 86400
+ set transform-set Manila1-Cebu1 
+ match address 100
 !
 !
 !
 !
-!
+ip ssh version 2
+ip domain-name xyz.com
 !
 !
 !
@@ -73,21 +97,28 @@ router ospf 1
  network 17.18.16.0 0.0.0.3 area 0
 !
 ip classless
+ip route 0.0.0.0 0.0.0.0 17.18.16.2 
 !
 ip flow-export version 9
 !
 !
+access-list 100 permit ip 192.168.0.0 0.0.1.255 192.168.32.0 0.0.0.255
+access-list 100 permit ip 192.168.0.0 0.0.1.255 192.168.33.0 0.0.0.127
 !
 !
 !
 !
 !
 line con 0
+ password 7 08314D5D1A
+ login
 !
 line aux 0
 !
 line vty 0 4
+ password 7 08375C4F1A0A
  login
+ transport input ssh
 !
 !
 !
