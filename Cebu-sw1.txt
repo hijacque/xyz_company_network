@@ -201,6 +201,7 @@ router ospf 1
  network 192.168.63.0 0.0.0.3 area 0
 !
 ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.63.1 
 !
 ip flow-export version 9
 !
