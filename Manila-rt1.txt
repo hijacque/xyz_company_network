@@ -102,8 +102,7 @@ ip route 0.0.0.0 0.0.0.0 17.18.16.2
 ip flow-export version 9
 !
 !
-access-list 100 permit ip 192.168.0.0 0.0.1.255 192.168.32.0 0.0.0.255
-access-list 100 permit ip 192.168.0.0 0.0.1.255 192.168.33.0 0.0.0.127
+access-list 100 permit ip 192.168.0.0 0.0.7.255 192.168.32.0 0.0.7.255
 !
 !
 !
