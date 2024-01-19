@@ -1,0 +1,259 @@
+!
+version 16.3.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Manila-sw1
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+ip routing
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet1/0/1
+ no switchport
+ ip address 192.168.31.6 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0/2
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/3
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/4
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/5
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/6
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/7
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/8
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/9
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/10
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/11
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/12
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/13
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/14
+ switchport trunk allowed vlan 1,10-16,20-24
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/15
+!
+interface GigabitEthernet1/0/16
+!
+interface GigabitEthernet1/0/17
+!
+interface GigabitEthernet1/0/18
+!
+interface GigabitEthernet1/0/19
+!
+interface GigabitEthernet1/0/20
+!
+interface GigabitEthernet1/0/21
+!
+interface GigabitEthernet1/0/22
+!
+interface GigabitEthernet1/0/23
+!
+interface GigabitEthernet1/0/24
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ mac-address 0030.f236.7b01
+ ip address 192.168.0.3 255.255.254.0
+ ip helper-address 172.17.0.4
+ standby 1 ip 192.168.0.1
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/2
+!
+interface Vlan11
+ mac-address 0030.f236.7b02
+ ip address 192.168.2.3 255.255.255.0
+ ip helper-address 172.17.0.4
+ standby 1 ip 192.168.2.1
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/3
+!
+interface Vlan12
+ mac-address 0030.f236.7b03
+ ip address 192.168.3.3 255.255.255.192
+ ip helper-address 172.17.0.4
+ standby 1 ip 192.168.3.1
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/4
+!
+interface Vlan13
+ mac-address 0030.f236.7b04
+ ip address 192.168.3.67 255.255.255.192
+ ip helper-address 172.17.0.4
+ standby 1 ip 192.168.3.65
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/5
+!
+interface Vlan14
+ mac-address 0030.f236.7b05
+ ip address 192.168.3.131 255.255.255.192
+ ip helper-address 172.17.0.4
+ standby 1 ip 192.168.3.129
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/6
+!
+interface Vlan15
+ mac-address 0030.f236.7b06
+ ip address 192.168.3.195 255.255.255.224
+ ip helper-address 172.17.0.4
+ standby 1 ip 192.168.3.193
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/7
+!
+interface Vlan16
+ mac-address 0030.f236.7b07
+ ip address 192.168.3.227 255.255.255.240
+ ip helper-address 172.17.0.4
+ standby 1 ip 192.168.3.225
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/8
+!
+interface Vlan20
+ mac-address 0030.f236.7b08
+ ip address 172.17.0.3 255.255.255.248
+ standby 1 ip 172.17.0.1
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/9
+!
+interface Vlan21
+ mac-address 0030.f236.7b09
+ ip address 172.17.0.11 255.255.255.248
+ standby 1 ip 172.17.0.9
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/10
+!
+interface Vlan22
+ mac-address 0030.f236.7b0a
+ ip address 172.17.0.19 255.255.255.248
+ standby 1 ip 172.17.0.17
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/11
+!
+interface Vlan23
+ mac-address 0030.f236.7b0b
+ ip address 172.17.0.27 255.255.255.248
+ standby 1 ip 172.17.0.25
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/12
+!
+interface Vlan24
+ mac-address 0030.f236.7b0c
+ ip address 172.17.0.35 255.255.255.224
+ ip helper-address 172.17.0.4
+ standby 1 ip 172.17.0.33
+ standby 1 preempt
+ standby 1 track GigabitEthernet1/0/13
+!
+router ospf 1
+ log-adjacency-changes
+ network 192.168.0.0 0.0.1.255 area 0
+ network 192.168.2.0 0.0.0.255 area 0
+ network 192.168.3.0 0.0.0.63 area 0
+ network 192.168.3.64 0.0.0.63 area 0
+ network 192.168.3.128 0.0.0.63 area 0
+ network 192.168.3.192 0.0.0.31 area 0
+ network 192.168.3.224 0.0.0.15 area 0
+ network 172.17.0.0 0.0.0.7 area 0
+ network 172.17.0.8 0.0.0.7 area 0
+ network 172.17.0.16 0.0.0.7 area 0
+ network 172.17.0.24 0.0.0.7 area 0
+ network 172.17.0.32 0.0.0.7 area 0
+ network 192.168.31.4 0.0.0.3 area 0
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.31.5
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+!
+end

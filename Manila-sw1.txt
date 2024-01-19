@@ -132,6 +132,7 @@ interface Vlan10
  standby 1 ip 192.168.0.1
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/2
 !
 interface Vlan11
  mac-address 000c.cf87.ea02
@@ -140,6 +141,7 @@ interface Vlan11
  standby 1 ip 192.168.2.1
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/3
 !
 interface Vlan12
  mac-address 000c.cf87.ea03
@@ -148,6 +150,7 @@ interface Vlan12
  standby 1 ip 192.168.3.1
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/4
 !
 interface Vlan13
  mac-address 000c.cf87.ea04
@@ -156,6 +159,7 @@ interface Vlan13
  standby 1 ip 192.168.3.65
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/5
 !
 interface Vlan14
  mac-address 000c.cf87.ea05
@@ -164,6 +168,7 @@ interface Vlan14
  standby 1 ip 192.168.3.129
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/6
 !
 interface Vlan15
  mac-address 000c.cf87.ea06
@@ -172,6 +177,7 @@ interface Vlan15
  standby 1 ip 192.168.3.193
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/7
 !
 interface Vlan16
  mac-address 000c.cf87.ea07
@@ -180,6 +186,7 @@ interface Vlan16
  standby 1 ip 192.168.3.225
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/8
 !
 interface Vlan20
  mac-address 000c.cf87.ea08
@@ -187,6 +194,7 @@ interface Vlan20
  standby 1 ip 172.17.0.1
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/9
 !
 interface Vlan21
  mac-address 000c.cf87.ea09
@@ -194,6 +202,7 @@ interface Vlan21
  standby 1 ip 172.17.0.9
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/10
 !
 interface Vlan22
  mac-address 000c.cf87.ea0a
@@ -201,6 +210,7 @@ interface Vlan22
  standby 1 ip 172.17.0.17
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/11
 !
 interface Vlan23
  mac-address 000c.cf87.ea0b
@@ -208,6 +218,7 @@ interface Vlan23
  standby 1 ip 172.17.0.25
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/12
 !
 interface Vlan24
  mac-address 000c.cf87.ea0c
@@ -216,6 +227,7 @@ interface Vlan24
  standby 1 ip 172.17.0.33
  standby 1 priority 105
  standby 1 preempt
+ standby 1 track GigabitEthernet1/0/13
 !
 router ospf 1
  log-adjacency-changes
