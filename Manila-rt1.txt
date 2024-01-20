@@ -2,7 +2,7 @@
 version 15.1
 no service timestamps log datetime msec
 no service timestamps debug datetime msec
-no service password-encryption
+service password-encryption
 !
 hostname Manila-rt1
 !
@@ -51,10 +51,6 @@ ip ssh version 2
 ip domain-name xyz.com
 !
 !
-!
-!
-!
-!
 spanning-tree mode pvst
 !
 !
@@ -64,14 +60,15 @@ spanning-tree mode pvst
 !
 interface GigabitEthernet0/0
  ip address 192.168.31.2 255.255.255.252
+ ip nat inside
  duplex auto
  speed auto
 !
 interface GigabitEthernet0/1
- no ip address
+ ip address 192.168.31.5 255.255.255.252
+ ip nat inside
  duplex auto
  speed auto
- shutdown
 !
 interface GigabitEthernet0/2
  no ip address
@@ -81,6 +78,8 @@ interface GigabitEthernet0/2
 !
 interface Serial0/0/0
  ip address 17.18.16.1 255.255.255.252
+ ip nat outside
+ crypto map IPSEC-MAP
 !
 interface Serial0/0/1
  no ip address
@@ -95,7 +94,12 @@ router ospf 1
  log-adjacency-changes
  network 192.168.31.0 0.0.0.3 area 0
  network 17.18.16.0 0.0.0.3 area 0
+ network 17.18.16.0 0.0.0.63 area 0
 !
+ip nat inside source list 110 interface Serial0/0/0 overload
+ip nat inside source static tcp 172.17.0.28 80 17.18.16.32 80 
+ip nat inside source static udp 172.17.0.12 53 17.18.16.32 53 
+ip nat inside source static tcp 172.17.0.20 25 17.18.16.32 25 
 ip classless
 ip route 0.0.0.0 0.0.0.0 17.18.16.2 
 !
@@ -103,13 +107,13 @@ ip flow-export version 9
 !
 !
 access-list 100 permit ip 192.168.0.0 0.0.7.255 192.168.32.0 0.0.7.255
+access-list 110 permit ip 192.168.0.0 0.0.7.255 17.18.16.0 0.0.0.255
 !
 !
 !
 !
 !
 line con 0
- password 7 08314D5D1A
  login
 !
 line aux 0

@@ -55,14 +55,15 @@ spanning-tree mode pvst
 !
 interface GigabitEthernet0/0
  ip address 192.168.63.1 255.255.255.252
+ ip nat inside
  duplex auto
  speed auto
 !
 interface GigabitEthernet0/1
- no ip address
+ ip address 192.168.63.5 255.255.255.252
+ ip nat inside
  duplex auto
  speed auto
- shutdown
 !
 interface GigabitEthernet0/2
  no ip address
@@ -72,6 +73,8 @@ interface GigabitEthernet0/2
 !
 interface Serial0/0/0
  ip address 17.18.16.9 255.255.255.252
+ ip nat outside
+ crypto map IPSEC-MAP
 !
 interface Serial0/0/1
  no ip address
@@ -85,16 +88,21 @@ interface Vlan1
 router ospf 1
  log-adjacency-changes
  network 192.168.63.0 0.0.0.3 area 0
+ network 192.168.63.4 0.0.0.3 area 0
  network 17.18.16.8 0.0.0.3 area 0
 !
+ip nat inside source list 110 interface Serial0/0/0 overload
+ip nat inside source static tcp 172.17.0.92 80 17.18.16.136 80 
+ip nat inside source static udp 172.17.0.76 53 17.18.16.136 53 
+ip nat inside source static tcp 172.17.0.84 25 17.18.16.136 25 
 ip classless
-ip route 0.0.0.0 0.0.0.0 17.18.16.10 
+ip route 0.0.0.0 0.0.0.0 17.18.16.10
 !
 ip flow-export version 9
 !
 !
-access-list 100 permit ip 192.168.32.0 0.0.0.255 192.168.0.0 0.0.1.255
-access-list 100 permit ip 192.168.33.0 0.0.0.127 192.168.0.0 0.0.1.255
+access-list 110 permit ip 192.168.32.0 0.0.7.255 17.18.16.0 0.0.0.255
+access-list 100 permit ip 192.168.32.0 0.0.7.255 192.168.0.0 0.0.7.255
 !
 !
 !
